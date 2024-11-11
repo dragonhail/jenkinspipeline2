@@ -1,6 +1,17 @@
 pipeline{
    agent any
    stages{
+       stage("Set Variables"){
+            steps{
+            sh "echo SetVariables"
+
+            script{
+                DOCKER_HUB_URL = 'registry.hub.docker.com'
+                DOCKER_HUB_FULL_URL = 'https://' + DOCKER_HUB_URL
+                DOCKER_HUB_CREDENTIAL_ID = 'docker-hub'
+                }
+            }
+       }
        stage("Permission"){
            steps{
                sh "chmod +x ./gradlew"
