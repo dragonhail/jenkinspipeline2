@@ -52,6 +52,6 @@ jacocoTestCoverageVerification{
 checkstyle{
     maxWarnings = 0
     configFile = file("${rootDir}/config/checkstyle.xml")
-    configProperties = ["suppressionFile":${rootDir}/config/checkstyle.suppression.xml]
+    configProperties = ["suppressionFile":"${rootDir}/config/checkstyle.suppression.xml"]
     toolVersion = "8.42"
 }
