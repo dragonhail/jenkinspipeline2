@@ -27,9 +27,14 @@ pipeline{
                 ])
             }
        }
-        stage("Static Code Analysis"){
+        stage("Gradle Build"){
               steps{
                   sh "./gradlew clean build"
+              }
+        }
+        stage("Docker Image Build"){
+              steps{
+                  sh "docker build -t jenkinspipeline2 ."
               }
         }
    }
