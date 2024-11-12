@@ -66,12 +66,9 @@ pipeline{
         }
 stage('Push Docker Image') {
             steps {
-                script {
                     // Docker 이미지를 EC2 Registry로 푸시
                     sh 'docker push $REGISTRY_URL/$IMAGE_NAME:$TAG'
-                }
             }
         }
     }
-   }
 }
