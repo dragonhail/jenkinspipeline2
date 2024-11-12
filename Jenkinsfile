@@ -48,8 +48,7 @@ pipeline{
                 echo 'Image Build & Image Push'
                 withCredentials([usernamePassword(
                     credentialsId: DOCKER_HUB_CREDENTIAL_ID,
-                    usernameVariable: 'dragonhailstone',
-                    usernamePassword: 'dckr_pat_7NV1EIrR4QJ8YkMxjfAFLZ55bGo'
+                    usernameVariable: 'dragonhailstone'
                 )]){
                     script{
                         docker.withRegistry(
@@ -61,7 +60,7 @@ pipeline{
         }
         stage("Docker Image Build"){
               steps{
-                  sh  "echo docker build"
+                  sh  "echo docker builds"
                   sh "docker build -t jenkinspipeline2 ."
               }
         }
