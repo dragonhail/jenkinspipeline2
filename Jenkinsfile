@@ -1,5 +1,11 @@
 pipeline{
    agent any
+    environment {
+           DOCKER_CREDENTIALS_ID = 'jenkinspipeline2'  // Docker 레지스트리의 인증 정보 ID
+           IMAGE_NAME = 'dragonhailstone/jenkinspipeline2'  // Docker 이미지 이름
+           TAG = 'latest'  // 태그 설정
+           REGISTRY_URL = 'http://3.36.131.51:5000'
+       }
    stages{
        stage("Set Variables"){
             steps{
@@ -45,8 +51,27 @@ pipeline{
         }
         stage("Docker Image Build"){
               steps{
-                  sh "docker build -t jenkinspipeline2 ."
+                  sh "docker build -t $REGISTRY_URL/$IMAGE_NAME:$TAG ."
               }
         }
+        stage('Login to Docker Registry') {
+            steps {
+                script {
+                    // Docker 레지스트리 로그인
+                    docker.withRegistry("$REGISTRY_URL", "$DOCKER_CREDENTIALS_ID") {
+                        // 로그인이 성공하면 계속 진행
+                    }
+                }
+            }
+        }
+stage('Push Docker Image') {
+            steps {
+                script {
+                    // Docker 이미지를 EC2 Registry로 푸시
+                    sh 'docker push $REGISTRY_URL/$IMAGE_NAME:$TAG'
+                }
+            }
+        }
+    }
    }
 }
