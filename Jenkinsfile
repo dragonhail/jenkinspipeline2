@@ -60,7 +60,7 @@ pipeline{
         }
         stage("Docker Image Build"){
               steps{
-                  sh  "echo docker builds"
+                  sh  "echo docker buildas"
                   sh "docker build -t jenkinspipeline2 ."
               }
         }
