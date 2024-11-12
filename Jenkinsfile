@@ -54,16 +54,6 @@ pipeline{
                   sh "docker build -t $REGISTRY_URL/$IMAGE_NAME:$TAG ."
               }
         }
-        stage('Login to Docker Registry') {
-            steps {
-                script {
-                    // Docker 레지스트리 로그인
-                    docker.withRegistry("$REGISTRY_URL", "$DOCKER_CREDENTIALS_ID") {
-                        // 로그인이 성공하면 계속 진행
-                    }
-                }
-            }
-        }
 stage('Push Docker Image') {
             steps {
                     // Docker 이미지를 EC2 Registry로 푸시
