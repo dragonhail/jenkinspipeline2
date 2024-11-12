@@ -37,7 +37,7 @@ pipeline{
         }
         stage("docker image build"){
                steps{
-                  sh 'docker build -t dragonhailstone/jenkinspipeline2:${env.BUILD_ID} .'
+                  sh 'docker build -t dragonhailstone/jenkinspipeline2:3 .'
               }
         }
         stage('docker hub login'){
@@ -47,7 +47,7 @@ pipeline{
         }
          stage('docker hub push'){
             steps{
-                sh 'docker push dragonhailstone/jenkinspipeline2:${env.BUILD_ID}'
+                sh 'docker push dragonhailstone/jenkinspipeline2:3'
             }
          }
          stage('deploy'){
