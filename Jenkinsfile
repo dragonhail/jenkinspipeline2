@@ -37,7 +37,7 @@ pipeline{
         }
         stage("docker image build"){
                steps{
-                  sh 'docker build -t dragonhailstone/jenkinspipeline2:3 .'
+                  sh 'docker build -t dragonhailstone/jenkinspipeline2:4 .'
               }
         }
         stage('docker hub login'){
@@ -47,12 +47,12 @@ pipeline{
         }
          stage('docker hub push'){
             steps{
-                sh 'docker push dragonhailstone/jenkinspipeline2:3'
+                sh 'docker push dragonhailstone/jenkinspipeline2:4'
             }
          }
          stage('deploy'){
             steps{
-                sh 'docker run -d --rm 8765:8080 jenkinspipeline2 dragonhailstone/jenkinspipeline2'
+                sh 'docker run -d --rm -p 8765:8080 --name jenkinspipeline2 dragonhailstone/jenkinspipeline2'
             }
          }
     }
