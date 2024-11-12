@@ -37,7 +37,7 @@ pipeline{
         }
         stage("docker image build"){
                steps{
-                  sh 'docker build -t dragonhailstone/jenkinspipeline2:4 .'
+                  sh 'docker build -t dragonhailstone/jenkinspipeline2:latest .'
               }
         }
         stage('docker hub login'){
@@ -47,7 +47,7 @@ pipeline{
         }
          stage('docker hub push'){
             steps{
-                sh 'docker push dragonhailstone/jenkinspipeline2:4'
+                sh 'docker push dragonhailstone/jenkinspipeline2:latest'
             }
          }
          stage('deploy'){
