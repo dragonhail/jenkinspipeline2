@@ -62,9 +62,4 @@ pipeline{
             }
          }
     }
-             post{
-                always{
-                    sh 'docker stop jenkinspipeline2'
-                }
-             }
 }

@@ -33,10 +33,22 @@ dependencies {
     annotationProcessor 'org.projectlombok:lombok'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+
+    testImplementation("io.cucumber:cucumber-java:7.2.0")
+    testImplementation("io.cucumber:cucumber-junit:7.2.0")
 }
 
 tasks.named('test') {
     useJUnitPlatform()
+}
+
+tasks.register('acceptanceTest', Test) {
+    include '**/acceptance/**'
+    systemProperties System.getProperties()
+}
+
+test{
+    exclude '**/acceptance/**'
 }
 
 jacocoTestCoverageVerification{
