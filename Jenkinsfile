@@ -4,7 +4,7 @@ pipeline{
            DOCKER_CREDENTIALS_ID = 'jenkinspipeline2'  // Docker 레지스트리의 인증 정보 ID
            IMAGE_NAME = 'jenkinspipeline2'  // Docker 이미지 이름
            TAG = 'latest'  // 태그 설정
-           REGISTRY_URL = 'http://3.36.131.51:5000'
+           REGISTRY_URL = '3.36.131.51:5000'
        }
    stages{
        stage("Set Variables"){
