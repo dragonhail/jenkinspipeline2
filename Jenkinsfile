@@ -61,6 +61,11 @@ pipeline{
                 sh 'chmod +x acceptance_test.sh && ./acceptance_test.sh'
             }
          }
+         stage('clean up'){
+            steps{
+                sh 'docker stop jenkinspipeline2'
+            }
+         }
 
     }
 }
