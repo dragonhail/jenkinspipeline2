@@ -55,17 +55,16 @@ pipeline{
                 sh 'docker run -d --rm -p 8765:8080 --name jenkinspipeline2 dragonhailstone/jenkinspipeline2'
             }
          }
-         stage('acceptance_test'){
+         stage('acceptance test'){
             steps{
                 sleep 60
                 sh 'chmod +x acceptance_test.sh && ./acceptance_test.sh'
             }
          }
-         stage('clean up'){
-            steps{
-                sh 'docker stop jenkinspipeline2'
-            }
-         }
-
     }
+             post{
+                always{
+                    sh 'docker stop jenkinspipeline2'
+                }
+             }
 }
