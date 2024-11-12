@@ -2,7 +2,7 @@ pipeline{
    agent any
     environment {
            DOCKER_CREDENTIALS_ID = 'jenkinspipeline2'  // Docker 레지스트리의 인증 정보 ID
-           IMAGE_NAME = 'dragonhailstone/jenkinspipeline2'  // Docker 이미지 이름
+           IMAGE_NAME = 'jenkinspipeline2'  // Docker 이미지 이름
            TAG = 'latest'  // 태그 설정
            REGISTRY_URL = 'http://3.36.131.51:5000'
        }
