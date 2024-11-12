@@ -43,8 +43,25 @@ pipeline{
                   sh "./gradlew clean build"
               }
         }
+        stage("Image Build & Push Docker Images"){
+            steps{
+                echo 'Image Build & Image Push'
+                withCredentials([usernamePassword(
+                    credentialsId: DOCKER_HUB_CREDENTIAL_ID,
+                    usernameVariable: 'dragonhailstone',
+                    usernamePassword: 'dckr_pat_7NV1EIrR4QJ8YkMxjfAFLZ55bGo'
+                )]){
+                    script{
+                        docker.withRegistry(
+                            DOCKER_HUB_FULL_URL, DOCKER_HUB_CREDENTIAL_ID
+                        )
+                    }
+                }
+            }
+        }
         stage("Docker Image Build"){
               steps{
+                  sh  "echo docker build"
                   sh "docker build -t jenkinspipeline2 ."
               }
         }
