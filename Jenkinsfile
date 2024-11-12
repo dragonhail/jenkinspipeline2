@@ -1,7 +1,7 @@
 pipeline{
    agent any
     environment {
-           DOCKER_CREDENTIALS = credentials('jenkinspipeline2')  // Docker 레지스트리의 인증 정보 ID
+           DOCKER_CREDENTIALS = 'jenkinspipeline2'  // Docker 레지스트리의 인증 정보 ID
        }
    stages{
        stage("Permission"){
