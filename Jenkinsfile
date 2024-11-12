@@ -1,7 +1,7 @@
 pipeline{
    agent any
     environment {
-           DOCKER_CREDENTIALS = credentials('docker-hub')  // Docker 레지스트리의 인증 정보 ID
+           DOCKER_CREDENTIALS = credentials('jenkinspipeline2')  // Docker 레지스트리의 인증 정보 ID
        }
    stages{
        stage("Permission"){
@@ -37,7 +37,7 @@ pipeline{
         }
         stage("docker image build"){
                steps{
-                  sh 'docker build -t dragonhailstone/jenkinspipeline2 .'
+                  sh 'docker build -t dragonhailstone/jenkinspipeline2:${env.BUILD_ID} .'
               }
         }
         stage('docker hub login'){
@@ -47,7 +47,7 @@ pipeline{
         }
          stage('docker hub push'){
             steps{
-                sh 'docker push dragonhailstone/jenkinspipeline2:2'
+                sh 'docker push dragonhailstone/jenkinspipeline2:${env.BUILD_ID}'
             }
          }
     }
