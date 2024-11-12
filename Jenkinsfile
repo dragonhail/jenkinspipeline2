@@ -1,20 +1,9 @@
 pipeline{
    agent any
     environment {
-           DOCKER_CREDENTIALS = credentials('jenkinspipeline2')  // Docker 레지스트리의 인증 정보 ID
+           DOCKER_CREDENTIALS = credentials('docker-hub')  // Docker 레지스트리의 인증 정보 ID
        }
    stages{
-       stage("Set Variables"){
-            steps{
-            sh "echo SetVariables"
-
-            script{
-                DOCKER_HUB_URL = 'registry.hub.docker.com'
-                DOCKER_HUB_FULL_URL = 'https://' + DOCKER_HUB_URL
-                DOCKER_HUB_CREDENTIAL_ID = 'docker-hub'
-                }
-            }
-       }
        stage("Permission"){
            steps{
                sh "chmod +x ./gradlew"
@@ -56,5 +45,10 @@ pipeline{
                   sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
                }
         }
+         stage('docker hub push'){
+            steps{
+                sh 'docker push dragonhailstone/jenkinspipeline2:2'
+            }
+         }
     }
 }
